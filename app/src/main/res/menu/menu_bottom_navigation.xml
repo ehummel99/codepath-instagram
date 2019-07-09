@@ -2,8 +2,29 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <android.support.design.widget.BottomNavigationView
+        app:itemBackground="@color/colorPrimary"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black" />
+
     <item
         android:id="@+id/miHome"
         android:icon="@drawable/ic_home"
-        android:title="Home" />
+        android:enabled="true"
+        android:title="Home"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/miAddPost"
+        android:icon="@drawable/ic_add"
+        android:enabled="true"
+        android:title="Add Post"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/miProfile"
+        android:icon="@drawable/ic_profile"
+        android:enabled="true"
+        android:title="Profile"
+        app:showAsAction="ifRoom"/>
 </menu>
