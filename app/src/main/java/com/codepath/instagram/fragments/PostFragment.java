@@ -54,7 +54,7 @@ public class PostFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         // Setup any handles to view objects here
         ivPicture = view.findViewById(R.id.ivPutPicture);
-        etDescription = view.findViewById(R.id.etPostDescription);
+        etDescription = view.findViewById(R.id.etWriteDescription);
         btnPost = view.findViewById(R.id.btnPost);
 
         btnPost.setOnClickListener(new View.OnClickListener() {
@@ -63,10 +63,21 @@ public class PostFragment extends Fragment {
                 final String description = etDescription.getText().toString();
                 final ParseUser user = ParseUser.getCurrentUser();
 
-                final File file = new File("https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50");
-                final ParseFile parseFile = new ParseFile(file);
+                final File file = photoFile;
+                if(file == null) {
+                    Toast.makeText(getContext(), "Must include a photo!", Toast.LENGTH_SHORT).show();
+                } else {
+                    final ParseFile parseFile = new ParseFile(file);
 
-                createPost(description, parseFile, user);
+                    createPost(description, parseFile, user);
+                }
+            }
+        });
+
+        ivPicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onLaunchCamera();
             }
         });
     }
@@ -82,6 +93,9 @@ public class PostFragment extends Fragment {
             public void done(ParseException e) {
                 if (e == null) {
                     Toast.makeText(getContext(), "Successfully posted", Toast.LENGTH_SHORT).show();
+                    etDescription.setText("");
+                    ivPicture.setImageResource(R.drawable.ic_camera);
+                    getFragmentManager().beginTransaction().replace(R.id.flContainer, getFragmentManager().getPrimaryNavigationFragment()).commit();
                 } else {
                     Toast.makeText(getContext(), "Failed to make post", Toast.LENGTH_SHORT).show();
                 }
@@ -89,7 +103,7 @@ public class PostFragment extends Fragment {
         });
     }
 
-    public void onLaunchCamera(View view) {
+    public void onLaunchCamera() {
         // create Intent to take a picture and return control to the calling application
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Create a File reference to access to future access
@@ -135,8 +149,8 @@ public class PostFragment extends Fragment {
                 Bitmap takenImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
                 // RESIZE BITMAP, see section below
                 // Load the taken image into a preview
-//                ImageView ivPreview = (ImageView) findViewById(R.id.ivPreview);
-//                ivPreview.setImageBitmap(takenImage);
+                ivPicture.setImageBitmap(takenImage);
+
             } else { // Result was a failure
                 Toast.makeText(getContext(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
             }

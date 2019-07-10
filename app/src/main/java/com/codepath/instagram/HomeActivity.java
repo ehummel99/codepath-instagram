@@ -6,18 +6,11 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.codepath.instagram.fragments.HomeFragment;
 import com.codepath.instagram.fragments.PostFragment;
 import com.codepath.instagram.fragments.ProfileFragment;
-import com.codepath.instagram.model.Post;
-import com.parse.FindCallback;
-import com.parse.ParseException;
-
-import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -25,7 +18,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+//
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.drawable.ic_action_name);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
@@ -66,29 +59,8 @@ public class HomeActivity extends AppCompatActivity {
                 });
         // Set default selection
         bottomNavigationView.setSelectedItemId(R.id.miHome);
-
-        loadTopPosts();
     }
 
-
-    public void loadTopPosts() {
-        final Post.Query postQuery = new Post.Query();
-        postQuery.getTop().withUser();
-
-        postQuery.findInBackground(new FindCallback<Post>() {
-            @Override
-            public void done(List<Post> objects, ParseException e) {
-                if(e == null) {
-                    for(int i = 0; i < objects.size(); i++) {
-                        Log.i("HomeActivity", "Post " + i + " " + objects.get(i).getDescription());
-                    }
-                    Toast.makeText(getApplicationContext(), "SUCCESS", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Failed to query posts", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
 
 
 
