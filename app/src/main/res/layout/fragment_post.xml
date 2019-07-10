@@ -38,7 +38,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_camera" />
+        app:srcCompat="@drawable/camera_shadow_fill" />
 
     <Button
         android:id="@+id/btnPost"

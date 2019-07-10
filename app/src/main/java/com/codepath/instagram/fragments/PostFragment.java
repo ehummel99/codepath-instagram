@@ -94,8 +94,7 @@ public class PostFragment extends Fragment {
                 if (e == null) {
                     Toast.makeText(getContext(), "Successfully posted", Toast.LENGTH_SHORT).show();
                     etDescription.setText("");
-                    ivPicture.setImageResource(R.drawable.ic_camera);
-                    getFragmentManager().beginTransaction().replace(R.id.flContainer, getFragmentManager().getPrimaryNavigationFragment()).commit();
+                    ivPicture.setImageResource(R.drawable.camera_shadow_fill);
                 } else {
                     Toast.makeText(getContext(), "Failed to make post", Toast.LENGTH_SHORT).show();
                 }

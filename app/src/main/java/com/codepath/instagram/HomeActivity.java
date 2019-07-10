@@ -20,9 +20,8 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 //
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setLogo(R.drawable.ic_action_name);
+        getSupportActionBar().setLogo(R.drawable.nav_logo_whiteout);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
-
 
         final FragmentManager fragmentManager = getSupportFragmentManager();
 

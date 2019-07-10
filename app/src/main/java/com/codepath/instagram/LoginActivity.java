@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
             getSupportActionBar().setDisplayShowHomeEnabled(true);
-            getSupportActionBar().setLogo(R.drawable.ic_action_name);
+            getSupportActionBar().setLogo(R.drawable.nav_logo_whiteout);
             getSupportActionBar().setDisplayUseLogoEnabled(true);
 
             etUsername = findViewById(R.id.etUsername);
