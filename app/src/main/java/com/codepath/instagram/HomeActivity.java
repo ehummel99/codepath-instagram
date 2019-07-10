@@ -1,6 +1,5 @@
 package com.codepath.instagram;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -8,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -18,7 +16,6 @@ import com.codepath.instagram.fragments.ProfileFragment;
 import com.codepath.instagram.model.Post;
 import com.parse.FindCallback;
 import com.parse.ParseException;
-import com.parse.ParseUser;
 
 import java.util.List;
 
@@ -57,11 +54,13 @@ public class HomeActivity extends AppCompatActivity {
                                 fragment = postFragment;
                                 break;
                             case R.id.miProfile:
-                            default:
                                 fragment = profileFragment;
                                 break;
+                            default:
+                                fragment = homeFragment;
+                                break;
                         }
-//                        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
+                        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
                         return true;
                     }
                 });
@@ -89,20 +88,6 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_home, menu);
-        return true;
-    }
-
-    public void onLogoutAction(MenuItem menuItem) {
-        ParseUser.logOut();
-        final Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
-        startActivity(intent);
-        finish();
     }
 
 
