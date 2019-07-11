@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.codepath.instagram.model.Post;
@@ -19,14 +18,14 @@ import java.util.List;
 
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
-public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
+public class ProfilePostAdapter extends RecyclerView.Adapter<ProfilePostAdapter.ViewHolder> {
 
     List<Post> posts;
     Context context;
 
 
     //pass posts array to constructor
-    public PostAdapter(List<Post> posts) {
+    public ProfilePostAdapter(List<Post> posts) {
         this.posts = posts;
     }
 
@@ -36,7 +35,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         context = viewGroup.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View postView = inflater.inflate(R.layout.item_post, viewGroup, false);
+        View postView = inflater.inflate(R.layout.item_profile_post, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(postView);
         return viewHolder;
     }
@@ -45,16 +44,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
         //get data according to position
         Post post = posts.get(i);
-        //populate views according to data
-        viewHolder.tvUsername.setText(post.getUser().getUsername());
-        viewHolder.tvUser.setText(post.getUser().getUsername());
-        viewHolder.tvDescription.setText(post.getDescription());
-//        viewHolder.tvRelativeTimestamp.setText(post.getRelativeTimeAgo(tweet.createdAt));
-
-//        Glide.with(context)
-//                .load(post.getUser()
-//                .bitmapTransform(new RoundedCornersTransformation(context, 100, 0))
-//                .into(viewHolder.ivProfileImage);
 
         Glide.with(context)
                 .load(post.getImage().getUrl())
@@ -76,23 +65,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     //create ViewHolder class
     public class ViewHolder extends RecyclerView.ViewHolder implements OnClickListener {
-        public ImageView ivProfileImage;
-        public TextView tvUsername;
-        public TextView tvUser;
-        public TextView tvDescription;
-        public TextView tvRelativeTimestamp;
         public ImageView ivImage;
 
         public ViewHolder(View view) {
             super(view);
 
-            //perform findViewById lookups
-            ivProfileImage = (ImageView) view.findViewById(R.id.ivUserProfile);
-            tvUsername = (TextView) view.findViewById(R.id.tvUser);
-            tvUser = (TextView) view.findViewById(R.id.tvPostUser);
-            tvDescription = (TextView) view.findViewById(R.id.tvPostDescription);
 //            tvRelativeTimestamp = (TextView) view.findViewById(R.id.tvRelativeTimestamp);
-            ivImage = (ImageView) view.findViewById(R.id.ivImage);
+            ivImage = (ImageView) view.findViewById(R.id.ivProfilePost);
             itemView.setOnClickListener(this);
         }
 

@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -34,6 +35,7 @@ public class PostFragment extends Fragment {
     private ImageView ivPicture;
     private EditText etDescription;
     private Button btnPost;
+    private MenuItem miHome;
 
     public final String APP_TAG = "Instagram";
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
@@ -56,6 +58,8 @@ public class PostFragment extends Fragment {
         ivPicture = view.findViewById(R.id.ivPutPicture);
         etDescription = view.findViewById(R.id.etWriteDescription);
         btnPost = view.findViewById(R.id.btnPost);
+        miHome = view.findViewById(R.id.miHome);
+
 
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +99,7 @@ public class PostFragment extends Fragment {
                     Toast.makeText(getContext(), "Successfully posted", Toast.LENGTH_SHORT).show();
                     etDescription.setText("");
                     ivPicture.setImageResource(R.drawable.camera_shadow_fill);
+                    getFragmentManager().beginTransaction().replace(R.id.flContainer, new HomeFragment()).commit();
                 } else {
                     Toast.makeText(getContext(), "Failed to make post", Toast.LENGTH_SHORT).show();
                 }

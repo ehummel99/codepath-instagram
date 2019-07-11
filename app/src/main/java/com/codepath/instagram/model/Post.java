@@ -16,10 +16,10 @@ import java.util.Locale;
 @ParseClassName("Post")
 public class Post extends ParseObject implements Serializable {
 
-    private static final String KEY_DESCRIPTION = "description";
-    private static final String KEY_IMAGE = "image";
-    private static final String KEY_USER = "user";
-    private static final String KEY_DATE = "createdAt";
+    public static final String KEY_DESCRIPTION = "description";
+    public static final String KEY_IMAGE = "image";
+    public static final String KEY_USER = "user";
+    public static final String KEY_DATE = "createdAt";
 
     public String getDescription() {
         return getString(KEY_DESCRIPTION);
