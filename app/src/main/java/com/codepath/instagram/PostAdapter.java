@@ -1,6 +1,7 @@
 package com.codepath.instagram;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.codepath.instagram.model.Post;
 
+import java.io.Serializable;
 import java.util.List;
 
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
@@ -96,13 +98,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             //get position of movie clicked
             int position = getAdapterPosition();
             //get movie at the position
-            Post tweet = posts.get(position);
-//            //create new intent
-//            Intent intent = new Intent(context, TweetDetailActivity.class);
-//            //pass movie
-//            intent.putExtra(Tweet.class.getSimpleName(), Parcels.wrap(tweet));
-//            //show the activity
-//            context.startActivity(intent);
+            Post post = posts.get(position);
+            //create new intent
+            Intent intent = new Intent(context, PostDetailActivity.class);
+            //pass movie
+            intent.putExtra(Post.class.getSimpleName(), (Serializable) post);
+            //show the activity
+            context.startActivity(intent);
         }
 
     }
