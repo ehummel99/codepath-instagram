@@ -47,6 +47,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         Post post = posts.get(i);
         //populate views according to data
         viewHolder.tvUsername.setText(post.getUser().getUsername());
+        viewHolder.tvUser.setText(post.getUser().getUsername());
         viewHolder.tvDescription.setText(post.getDescription());
 //        viewHolder.tvRelativeTimestamp.setText(post.getRelativeTimeAgo(tweet.createdAt));
 
@@ -77,6 +78,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder implements OnClickListener {
         public ImageView ivProfileImage;
         public TextView tvUsername;
+        public TextView tvUser;
         public TextView tvDescription;
         public TextView tvRelativeTimestamp;
         public ImageView ivImage;
@@ -87,6 +89,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             //perform findViewById lookups
             ivProfileImage = (ImageView) view.findViewById(R.id.ivUserProfile);
             tvUsername = (TextView) view.findViewById(R.id.tvUser);
+            tvUser = (TextView) view.findViewById(R.id.tvPostUser);
             tvDescription = (TextView) view.findViewById(R.id.tvPostDescription);
 //            tvRelativeTimestamp = (TextView) view.findViewById(R.id.tvRelativeTimestamp);
             ivImage = (ImageView) view.findViewById(R.id.ivImage);

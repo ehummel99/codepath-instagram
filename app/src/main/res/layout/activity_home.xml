@@ -11,6 +11,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#005A5A5A"
         android:foreground="@drawable/nav_logo_whiteout"
         android:foregroundGravity="center"
         app:layout_constraintBottom_toTopOf="@+id/flContainer"
@@ -36,5 +37,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/flContainer"
         app:menu="@menu/menu_bottom_navigation" />
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#8B8B8B"
+        app:layout_constraintBottom_toTopOf="@+id/flContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
 </android.support.constraint.ConstraintLayout>

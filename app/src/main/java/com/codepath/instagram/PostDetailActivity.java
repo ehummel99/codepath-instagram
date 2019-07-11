@@ -18,6 +18,7 @@ public class PostDetailActivity extends AppCompatActivity {
     TextView tvDescription;
     TextView tvDate;
     ImageView ivImage;
+    TextView tvUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +30,12 @@ public class PostDetailActivity extends AppCompatActivity {
         tvDescription = (TextView) findViewById(R.id.tvDescription);
         ivImage = (ImageView) findViewById(R.id.ivPostImage);
         tvDate = (TextView) findViewById(R.id.tvTimestamp);
+        tvUser = (TextView) findViewById(R.id.tvPostUsername);
 
         post = (Post) getIntent().getParcelableExtra(Post.class.getSimpleName());
 
         tvUserName.setText(post.getUser().getUsername());
+        tvUser.setText(post.getUser().getUsername());
         tvDescription.setText(post.getDescription());
         String date = post.getRelativeTimeAgo(post.getCreatedAt().toString());
         tvDate.setText(date);
