@@ -27,6 +27,7 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -91,6 +92,7 @@ public class PostFragment extends Fragment {
         newPost.setDescription(description);
         newPost.setImage(image);
         newPost.setUser(user);
+        newPost.addAll(Post.KEY_LIKED_BY, new ArrayList<ParseUser>());
 
         newPost.saveInBackground(new SaveCallback() {
             @Override

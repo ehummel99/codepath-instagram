@@ -46,9 +46,6 @@ public class HomeFragment extends Fragment {
     public void onPrepareOptionsMenu(Menu menu) {
         // Store instance of the menu item containing progress
         miActionProgressItem = menu.findItem(R.id.miActionProgress);
-        showProgressBar();
-        loadTopPosts();
-        hideProgressBar();
     }
 
     @Override
@@ -108,6 +105,7 @@ public class HomeFragment extends Fragment {
 
         final Post.Query postQuery = new Post.Query();
         postQuery.getTop().withUser();
+        postQuery.addDescendingOrder(Post.KEY_DATE);
 
         postQuery.findInBackground(new FindCallback<Post>() {
             @Override

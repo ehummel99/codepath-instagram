@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.codepath.instagram.model.Post;
+import com.parse.ParseUser;
 
 import java.io.Serializable;
 import java.util.List;
@@ -42,14 +43,40 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int i) {
         //get data according to position
-        Post post = posts.get(i);
+        final Post post = posts.get(i);
         //populate views according to data
         viewHolder.tvUsername.setText(post.getUser().getUsername());
         viewHolder.tvUser.setText(post.getUser().getUsername());
         viewHolder.tvDescription.setText(post.getDescription());
+        viewHolder.tvNumLikes.setText(Integer.toString(post.getNumLikes()));
 //        viewHolder.tvRelativeTimestamp.setText(post.getRelativeTimeAgo(tweet.createdAt));
+
+        if(post.isLiked()) {
+            viewHolder.ivHeart.setImageResource(R.drawable.ufi_heart_active);
+        }
+
+        viewHolder.ivHeart.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!post.isLiked()) {
+                    post.likePost(ParseUser.getCurrentUser());
+                    viewHolder.ivHeart.setImageResource(R.drawable.ufi_heart_active);
+                    viewHolder.tvNumLikes.setText(Integer.toString(post.getNumLikes()));
+
+                    post.saveInBackground();
+
+                } else {
+                    post.unlikePost(ParseUser.getCurrentUser());
+                    viewHolder.ivHeart.setImageResource(R.drawable.ufi_heart);
+                    viewHolder.tvNumLikes.setText(Integer.toString(post.getNumLikes()));
+
+                    post.saveInBackground();
+                }
+            }
+        });
+
 
 //        Glide.with(context)
 //                .load(post.getUser()
@@ -82,6 +109,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         public TextView tvDescription;
         public TextView tvRelativeTimestamp;
         public ImageView ivImage;
+        public ImageView ivHeart;
+        public ImageView ivComment;
+        public TextView tvNumLikes;
 
         public ViewHolder(View view) {
             super(view);
@@ -93,6 +123,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             tvDescription = (TextView) view.findViewById(R.id.tvPostDescription);
 //            tvRelativeTimestamp = (TextView) view.findViewById(R.id.tvRelativeTimestamp);
             ivImage = (ImageView) view.findViewById(R.id.ivImage);
+            ivHeart = (ImageView) view.findViewById(R.id.ivHeart);
+            ivComment = (ImageView) view.findViewById(R.id.ivComment);
+            tvNumLikes = (TextView) view.findViewById(R.id.tvNumLikes);
+
             itemView.setOnClickListener(this);
         }
 
