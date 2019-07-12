@@ -70,6 +70,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 } else {
                     post.unlikePost(ParseUser.getCurrentUser());
                     viewHolder.ivHeart.setImageResource(R.drawable.ufi_heart);
+                    viewHolder.ivHeart.setColorFilter(R.color.black);
                     viewHolder.tvNumLikes.setText(Integer.toString(post.getNumLikes()));
 
                     post.saveInBackground();
