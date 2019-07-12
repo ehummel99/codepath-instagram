@@ -51,7 +51,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         viewHolder.tvUser.setText(post.getUser().getUsername());
         viewHolder.tvDescription.setText(post.getDescription());
         viewHolder.tvNumLikes.setText(Integer.toString(post.getNumLikes()));
-//        viewHolder.tvRelativeTimestamp.setText(post.getRelativeTimeAgo(tweet.createdAt));
+        viewHolder.tvRelativeTimestamp.setText(post.getRelativeTimeAgo(post.getCreatedAt().toString()));
 
         if(post.isLiked()) {
             viewHolder.ivHeart.setImageResource(R.drawable.ufi_heart_active);
@@ -122,7 +122,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             tvUsername = (TextView) view.findViewById(R.id.tvUser);
             tvUser = (TextView) view.findViewById(R.id.tvPostUser);
             tvDescription = (TextView) view.findViewById(R.id.tvPostDescription);
-//            tvRelativeTimestamp = (TextView) view.findViewById(R.id.tvRelativeTimestamp);
+            tvRelativeTimestamp = (TextView) view.findViewById(R.id.tvDate);
             ivImage = (ImageView) view.findViewById(R.id.ivImage);
             ivHeart = (ImageView) view.findViewById(R.id.ivHeart);
             ivComment = (ImageView) view.findViewById(R.id.ivComment);
